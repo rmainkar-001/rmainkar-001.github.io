@@ -1,78 +1,91 @@
-# 👋 Hi, I'm Rohit Mainkar
+# Rohit Mainkar — Developer Portfolio
 
-### Full-Stack Developer | AI
+A responsive React portfolio website for showcasing full-stack development skills and projects.
 
-I build scalable enterprise applications and AI-powered solutions.
+## Tech stack
+- React
+- Vite
+- JavaScript
+- CSS
+- Lucide icons
 
-**React • Python • FastAPI • AI • Microservices • PostgreSQL • Redis • Celery • Docker**
+## Run locally
 
----
+Requirements: Node.js 18+ (a current LTS release is recommended).
 
-## 🚀 Featured Projects
+```bash
+npm install
+npm run dev
+```
 
-### 🤖 ERP Agent
+Open the local URL printed by Vite.
 
-AI-powered conversational ERP assistant.
+## Build for production
 
-[View Project →](projects/erp-agent.md)
+```bash
+npm run build
+npm run preview
+```
 
----
+The production site is generated in `dist/`.
 
-### ⚙️ TaskFlow
+## Publish with GitHub Pages
 
-Template-driven task generation and workflow automation.
+### Recommended: use GitHub Actions
+1. Create a public repository named `rmainkar-001.github.io` if you want the site at `https://rmainkar-001.github.io`.
+2. Upload the contents of this project to that repository.
+3. In the repository, open **Settings → Pages** and choose **GitHub Actions** as the build/deployment source.
+4. Add the workflow below at `.github/workflows/deploy.yml`.
+5. Push to `main`. After the workflow completes, visit `https://rmainkar-001.github.io`.
 
-[View Project →](projects/taskflow.md)
+Create `.github/workflows/deploy.yml` with:
 
----
+```yaml
+name: Deploy portfolio to GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm install
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+```
 
-### 🍬 SweetPOS
+If you prefer to keep the repository named `portfolio`, the GitHub Pages URL is usually `https://rmainkar-001.github.io/portfolio/`; Vite's `base` setting must then be configured to `/portfolio/` in `vite.config.js`.
 
-Billing and inventory management platform.
+## Personalize before publishing
 
-[View Project →](projects/sweetpos.md)
+Search the project for these placeholders and update them:
+- `your-email@example.com` — your actual professional email
+- `https://www.linkedin.com/` — your exact LinkedIn profile URL
+- Project entries marked **details to confirm** — replace with your real responsibilities, stack, and outcomes
+- Add a downloadable resume only if you want one linked from the site
 
----
-
-### 📦 FoodERP
-
-ERP and supply-chain management platform.
-
-[View Project →](projects/fooderp.md)
-
----
-
-### 📱 Supplier App
-
-React Native supplier management application.
-
-[View Project →](projects/supplier-app.md)
-
----
-
-## 🛠️ Core Technologies
-
-React • React Native • Python • FastAPI • PostgreSQL • MySQL
-
-LangChain • LangGraph • AI Agents • Celery • Redis • Kafka
-
-Docker • CI/CD • GitOps • WebSockets
-
----
-
-## 💼 Experience
-
-**Software Developer — Attrib Solutions Pvt. Ltd.**
-
-2021 – Present
-
-Working across frontend, backend, enterprise applications,
-AI integration, microservices, and automation.
-
----
-
-## 📫 Contact
-
-📧 r.mainkar50@gmail.com
-
-🔗 https://github.com/rmainkar-001
+The portfolio uses project summaries based on the information currently available. Do not publish unverified project claims or confidential company information.
