@@ -1,91 +1,64 @@
-# Rohit Mainkar — Developer Portfolio
+# Rohit Mainkar — Full Stack Developer Portfolio
 
-A responsive React portfolio website for showcasing full-stack development skills and projects.
+A responsive React + Vite portfolio designed to present Rohit's full-stack development experience, business applications, aggregator integrations, and AI/SQL work to recruiters and hiring teams.
 
-## Tech stack
+## Portfolio sections
+
+- Professional profile and approximately five years of software development experience
+- React.js, Python, FastAPI, SQL, API integration, and AI application skills
+- FoodERP: sales, purchase, inventory, and POS-related workflows
+- Online aggregator integration and management: Swiggy/Zomato API workflows, store ON/OFF, real-time store status, and menu controls
+- SQL AI Agent using LlamaIndex
+- POS Billing Software, Food Menu Manager, SCM ERP, TakPro, and ERP AI Chat Service
+- Engineering approach and contact links
+
+## Technology
+
 - React
 - Vite
 - JavaScript
 - CSS
-- Lucide icons
+- Lucide React icons
+- GitHub Actions for GitHub Pages deployment
 
 ## Run locally
 
-Requirements: Node.js 18+ (a current LTS release is recommended).
+Requires Node.js 20 or a compatible current LTS release.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite.
+Open the local URL shown by Vite.
 
-## Build for production
+## Build locally
 
 ```bash
 npm run build
 npm run preview
 ```
 
-The production site is generated in `dist/`.
+Vite generates the production website in `dist/`.
 
-## Publish with GitHub Pages
+## Deploy to GitHub Pages
 
-### Recommended: use GitHub Actions
-1. Create a public repository named `rmainkar-001.github.io` if you want the site at `https://rmainkar-001.github.io`.
-2. Upload the contents of this project to that repository.
-3. In the repository, open **Settings → Pages** and choose **GitHub Actions** as the build/deployment source.
-4. Add the workflow below at `.github/workflows/deploy.yml`.
-5. Push to `main`. After the workflow completes, visit `https://rmainkar-001.github.io`.
+This repository is intended for `https://rmainkar-001.github.io/`.
 
-Create `.github/workflows/deploy.yml` with:
+1. Push the project files to the root of the public repository named `rmainkar-001.github.io`.
+2. In **Settings → Pages**, set the source to **GitHub Actions**.
+3. Keep `.github/workflows/deploy.yml` as the only Pages deployment workflow. Remove any duplicate workflow such as `.github/workflows/static.yml` that deploys the repository as plain static content.
+4. Push to `main`, then inspect the **Actions** tab for a successful build and deployment.
 
-```yaml
-name: Deploy portfolio to GitHub Pages
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-concurrency:
-  group: pages
-  cancel-in-progress: true
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-      - run: npm install
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
-```
-
-If you prefer to keep the repository named `portfolio`, the GitHub Pages URL is usually `https://rmainkar-001.github.io/portfolio/`; Vite's `base` setting must then be configured to `/portfolio/` in `vite.config.js`.
+The workflow intentionally does not enable npm caching, so it does not require a lock file just to configure `actions/setup-node`. For repeatable local dependency versions, you can run `npm install` locally and commit the generated `package-lock.json`.
 
 ## Personalize before publishing
 
-Search the project for these placeholders and update them:
-- `your-email@example.com` — your actual professional email
-- `https://www.linkedin.com/` — your exact LinkedIn profile URL
-- Project entries marked **details to confirm** — replace with your real responsibilities, stack, and outcomes
-- Add a downloadable resume only if you want one linked from the site
+Update these contact details in `src/main.jsx` before using the site for job applications:
 
-The portfolio uses project summaries based on the information currently available. Do not publish unverified project claims or confidential company information.
+- Replace `your-email@example.com` with your professional email address.
+- Replace the generic LinkedIn URL with your real LinkedIn profile.
+- Add public repository or demo links to individual projects only when they are available and safe to share.
+- Confirm the detailed responsibilities for SCM ERP and TakPro before expanding those project descriptions.
+
+Project descriptions avoid fabricated client names, metrics, and outcomes. Keep all statements aligned with your actual work and avoid publishing confidential code or customer information.
